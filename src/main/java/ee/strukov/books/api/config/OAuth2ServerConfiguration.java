@@ -33,6 +33,7 @@ public class OAuth2ServerConfiguration {
     protected static class ResourceServerConfiguration extends
             ResourceServerConfigurerAdapter {
 
+
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
             resources.resourceId(RESOURCE_ID);
@@ -73,7 +74,7 @@ public class OAuth2ServerConfiguration {
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
             clients
                     .inMemory()
-                    .withClient("clientapp")
+                    .withClient("clientapp").autoApprove(true)
                     .authorizedGrantTypes("password", "refresh_token")
                     .authorities("USER")
                     .scopes("openid")
