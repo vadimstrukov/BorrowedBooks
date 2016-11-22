@@ -35,8 +35,9 @@ public class UserController {
 
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public @ResponseBody void logout(@RequestParam("token") String value) throws InvalidClientException {
+    public ResponseEntity<String> logout(@RequestParam("token") String value) throws InvalidClientException {
         defaultTokenServices.revokeToken(value);
+        return new ResponseEntity<>("Successfully logged out", HttpStatus.OK);
     }
 
 }
