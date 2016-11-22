@@ -42,7 +42,7 @@ public class OAuth2ServerConfiguration {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/api/v1/users").authenticated();
+                    .antMatchers("/api/v1/logout").authenticated();
         }
 
     }

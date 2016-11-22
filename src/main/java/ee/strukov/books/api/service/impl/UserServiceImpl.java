@@ -1,5 +1,6 @@
 package ee.strukov.books.api.service.impl;
 
+import ee.strukov.books.api.model.Role;
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by strukov on 20.11.16.
@@ -28,6 +31,15 @@ public class UserServiceImpl implements UserDetailsService{
             throw new UsernameNotFoundException(String.format("User %s does not exist!", email));
         }
         return new UserRepositoryUserDetails(user);
+    }
+
+    public User register(User user){
+        Role role = new Role();
+        role.setRole("USER");
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
+        return userRepository.save(user);
     }
 
     public List<User> getUsers(){

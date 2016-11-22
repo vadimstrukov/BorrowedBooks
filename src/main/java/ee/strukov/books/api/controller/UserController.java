@@ -33,6 +33,10 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<User> register(@RequestBody User user) {
+        return new ResponseEntity<>(userService.register(user), HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ResponseEntity<String> logout(@RequestParam("token") String value) throws InvalidClientException {
