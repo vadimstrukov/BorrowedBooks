@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ResponseEntity<String> logout(@RequestParam("token") String value) throws InvalidClientException {
-        defaultTokenServices.revokeToken(value);
+    public ResponseEntity<String> logout(HttpServletRequest request) throws InvalidClientException {
+        defaultTokenServices.revokeToken(request.getHeader("Authorization").replace("Bearer", "").trim());
         return new ResponseEntity<>("Successfully logged out", HttpStatus.OK);
     }
 
