@@ -1,6 +1,7 @@
 package ee.strukov.books.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,9 +24,9 @@ public class Role implements GrantedAuthority, Serializable{
     private Integer id;
     @Getter @Setter
     private String role;
-    @Getter @Setter
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+    @Getter @Setter
     private Set<User> users = new HashSet<>();
 
     @Override

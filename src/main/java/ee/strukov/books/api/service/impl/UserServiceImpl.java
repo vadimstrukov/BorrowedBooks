@@ -3,23 +3,22 @@ package ee.strukov.books.api.service.impl;
 import ee.strukov.books.api.model.Role;
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.repository.UserRepository;
+import ee.strukov.books.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
  * Created by strukov on 20.11.16.
  */
 @Service
-public class UserServiceImpl implements UserDetailsService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,7 +32,8 @@ public class UserServiceImpl implements UserDetailsService{
         return new UserRepositoryUserDetails(user);
     }
 
-    public User register(User user){
+    @Override
+    public User register(User user) {
         Role role = new Role();
         role.setRole("USER");
         Set<Role> roles = new HashSet<>();
@@ -42,9 +42,6 @@ public class UserServiceImpl implements UserDetailsService{
         return userRepository.save(user);
     }
 
-    public List<User> getUsers(){
-        return this.userRepository.findAll();
-    }
 
     private final static class UserRepositoryUserDetails extends User implements UserDetails {
 
