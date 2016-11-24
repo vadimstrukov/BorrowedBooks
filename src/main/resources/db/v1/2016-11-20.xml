@@ -14,7 +14,7 @@
             <column name="fullname" type="varchar(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="varchar(50)">
+            <column name="password" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -131,7 +131,7 @@
         <insert tableName="user">
             <column name="email">abdul@necronomicon.sa</column>
             <column name="fullname">Abdul Al Hazred</column>
-            <column name="password">abdul</column>
+            <column name="password">$2a$04$/AYSHXQbQs6ffZIfv4YMUOFkvhyytlMXsOgUnr8rchm0OgUp1QIFa</column>
         </insert>
     </changeSet>
     <changeSet id="insert-user-role" author="vadim">
