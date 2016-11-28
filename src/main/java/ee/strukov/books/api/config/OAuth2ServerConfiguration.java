@@ -3,9 +3,11 @@ package ee.strukov.books.api.config;
 import ee.strukov.books.api.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -24,11 +26,15 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
  */
 
 @Configuration
+@EnableCaching(proxyTargetClass = true)
+@EnableAsync(proxyTargetClass = true)
 public class OAuth2ServerConfiguration {
 
     private static final String RESOURCE_ID = "restservice";
 
     @Configuration
+    @EnableCaching(proxyTargetClass = true)
+    @EnableAsync(proxyTargetClass = true)
     @EnableResourceServer
     protected static class ResourceServerConfiguration extends
             ResourceServerConfigurerAdapter {
@@ -42,12 +48,14 @@ public class OAuth2ServerConfiguration {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/api/v1/logout").authenticated();
+                    .antMatchers("/api/v1/logout", "/api/v1/books").authenticated();
         }
 
     }
 
     @Configuration
+    @EnableCaching(proxyTargetClass = true)
+    @EnableAsync(proxyTargetClass = true)
     @EnableAuthorizationServer
     protected static class AuthorizationServerConfiguration extends
             AuthorizationServerConfigurerAdapter {
