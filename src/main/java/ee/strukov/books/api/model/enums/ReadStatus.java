@@ -5,5 +5,6 @@ package ee.strukov.books.api.model.enums;
  */
 public enum  ReadStatus {
     READING,
-    READED
+    READED,
+    UNREAD
 }

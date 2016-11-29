@@ -3,6 +3,7 @@ package ee.strukov.books.api.controller;
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.model.book.Book;
 import ee.strukov.books.api.model.book.OwnedBook;
+import ee.strukov.books.api.model.enums.ReadStatus;
 import ee.strukov.books.api.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,22 +14,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by strukov on 28.11.16.
  */
 @RestController
-@RequestMapping(value = "api/v1")
+@RequestMapping(value = "api/v1/books")
 public class BookController {
 
     @Autowired
     BooksService booksService;
 
-    @RequestMapping(value = "/books", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<OwnedBook> save(@RequestBody Book book, @AuthenticationPrincipal User user) {
-        OwnedBook ownedBook = new OwnedBook();
-        ownedBook.setBook(book);
-        ownedBook.setUser(user);
-        return new ResponseEntity<>(booksService.save(ownedBook), HttpStatus.OK);
+        return new ResponseEntity<>(booksService.save(user, book), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<Map<String, List<Book>>> getBooks(@AuthenticationPrincipal User user){
+        Map results = new HashMap<String, List<Book>>();
+        results.put("items", booksService.findByUser(user));
+        return new ResponseEntity<>(results, HttpStatus.OK);
     }
 }
 
