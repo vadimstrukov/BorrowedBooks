@@ -62,7 +62,7 @@ public class VolumeInfo implements Serializable {
     @JsonProperty("publishedDate")
     public String publishedDate;
     @JsonProperty("description")
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGVARCHAR")
     public String description;
     @JsonProperty("industryIdentifiers")
     @OneToMany(cascade = CascadeType.ALL)

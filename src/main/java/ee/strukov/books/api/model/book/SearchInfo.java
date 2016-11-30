@@ -31,5 +31,6 @@ public class SearchInfo implements Serializable {
     @JsonIgnore
     public Long id;
     @JsonProperty("textSnippet")
+    @Column(columnDefinition = "LONGVARCHAR")
     public String textSnippet;
 }

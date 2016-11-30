@@ -26,6 +26,7 @@ public class OwnedBook implements Serializable {
     private ReadStatus readStatus;
     private Date date_added;
     @OneToOne(cascade=CascadeType.MERGE)
+    @JsonIgnore
     private User user;
     @OneToOne(cascade=CascadeType.ALL)
     private Book book;
