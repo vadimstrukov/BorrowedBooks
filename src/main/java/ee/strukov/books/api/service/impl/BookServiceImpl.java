@@ -35,10 +35,7 @@ public class BookServiceImpl implements BooksService {
     }
 
     @Override
-    public List<Book> findByUser(User user) {
-        return bookRepository.findByUser(user)
-                .stream()
-                .map(OwnedBook::getBook)
-                .collect(Collectors.toList());
+    public List<OwnedBook> findByUser(User user) {
+        return bookRepository.findByUser(user);
     }
 }

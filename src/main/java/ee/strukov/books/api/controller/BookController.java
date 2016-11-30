@@ -35,10 +35,8 @@ public class BookController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Map<String, List<Book>>> getBooks(@AuthenticationPrincipal User user){
-        Map results = new HashMap<String, List<Book>>();
-        results.put("items", booksService.findByUser(user));
-        return new ResponseEntity<>(results, HttpStatus.OK);
+    public ResponseEntity<List<OwnedBook>> getBooks(@AuthenticationPrincipal User user){
+        return new ResponseEntity<>(booksService.findByUser(user), HttpStatus.OK);
     }
 }
 

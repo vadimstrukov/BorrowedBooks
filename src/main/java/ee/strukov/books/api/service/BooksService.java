@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface BooksService {
     OwnedBook save(User user, Book book);
-    List<Book> findByUser(User user);
+    List<OwnedBook> findByUser(User user);
 }
