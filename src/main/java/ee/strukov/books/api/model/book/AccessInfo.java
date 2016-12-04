@@ -42,24 +42,12 @@ public class AccessInfo implements Serializable {
     public Long id;
     @JsonProperty("country")
     public String country;
-    @JsonProperty("viewability")
-    public String viewability;
-    @JsonProperty("embeddable")
-    public Boolean embeddable;
-    @JsonProperty("publicDomain")
-    public Boolean publicDomain;
-    @JsonProperty("textToSpeechPermission")
-    public String textToSpeechPermission;
     @JsonProperty("epub")
     @OneToOne(cascade=CascadeType.ALL)
     public Epub epub;
     @JsonProperty("pdf")
     @OneToOne(cascade=CascadeType.ALL)
     public Pdf pdf;
-    @JsonProperty("webReaderLink")
-    public String webReaderLink;
     @JsonProperty("accessViewStatus")
     public String accessViewStatus;
-    @JsonProperty("quoteSharingAllowed")
-    public Boolean quoteSharingAllowed;
 }

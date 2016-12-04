@@ -34,8 +34,4 @@ public class SaleInfo implements Serializable {
     public Long id;
     @JsonProperty("country")
     public String country;
-    @JsonProperty("saleability")
-    public String saleability;
-    @JsonProperty("isEbook")
-    public Boolean isEbook;
 }

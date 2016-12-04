@@ -50,7 +50,4 @@ public class Book implements Serializable {
     @JsonProperty("accessInfo")
     @OneToOne(cascade=CascadeType.ALL)
     public AccessInfo accessInfo;
-    @JsonProperty("searchInfo")
-    @OneToOne(cascade=CascadeType.ALL)
-    public SearchInfo searchInfo;
 }

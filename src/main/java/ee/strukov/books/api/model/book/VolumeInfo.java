@@ -64,23 +64,9 @@ public class VolumeInfo implements Serializable {
     @JsonProperty("description")
     @Column(columnDefinition = "LONGVARCHAR")
     public String description;
-    @JsonProperty("industryIdentifiers")
-    @OneToMany(cascade = CascadeType.ALL)
-    @Fetch(FetchMode.SUBSELECT)
-    public List<IndustryIdentifier> industryIdentifiers = new ArrayList<IndustryIdentifier>();
     @JsonProperty("readingModes")
     @OneToOne(cascade=CascadeType.ALL)
     public ReadingModes readingModes;
-    @JsonProperty("pageCount")
-    public Integer pageCount;
-    @JsonProperty("printType")
-    public String printType;
-    @JsonProperty("categories")
-    public String [] categories = new String[20];
-    @JsonProperty("averageRating")
-    public Integer averageRating;
-    @JsonProperty("ratingsCount")
-    public Integer ratingsCount;
     @JsonProperty("maturityRating")
     public String maturityRating;
     @JsonProperty("allowAnonLogging")
@@ -88,10 +74,7 @@ public class VolumeInfo implements Serializable {
     @JsonProperty("contentVersion")
     public String contentVersion;
     @JsonProperty("imageLinks")
-    @OneToOne(cascade=CascadeType.ALL)
     public ImageLinks imageLinks;
-    @JsonProperty("language")
-    public String language;
     @JsonProperty("previewLink")
     public String previewLink;
     @JsonProperty("infoLink")
