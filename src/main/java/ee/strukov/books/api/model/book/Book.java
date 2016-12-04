@@ -15,18 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Generated("org.jsonschema2pojo")
-@JsonPropertyOrder({
-    "kind",
-    "id",
-    "etag",
-    "selfLink",
-    "volumeInfo",
-    "saleInfo",
-    "accessInfo",
-    "searchInfo"
-})
+
 @Entity
 @Data
 @Table(name = "BOOK")
@@ -44,10 +33,4 @@ public class Book implements Serializable {
     @JsonProperty("volumeInfo")
     @OneToOne(cascade= CascadeType.ALL)
     public VolumeInfo volumeInfo;
-    @JsonProperty("saleInfo")
-    @OneToOne(cascade=CascadeType.ALL)
-    public SaleInfo saleInfo;
-    @JsonProperty("accessInfo")
-    @OneToOne(cascade=CascadeType.ALL)
-    public AccessInfo accessInfo;
 }

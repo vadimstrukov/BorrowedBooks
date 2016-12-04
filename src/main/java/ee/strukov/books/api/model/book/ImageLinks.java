@@ -15,12 +15,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Generated("org.jsonschema2pojo")
-@JsonPropertyOrder({
-    "smallThumbnail",
-    "thumbnail"
-})
 @Entity
 @Data
 @Table(name = "IMAGELINKS")
@@ -32,8 +26,13 @@ public class ImageLinks implements Serializable {
     @JsonIgnore
     public Long id;
     @JsonProperty("smallThumbnail")
+    @Column(columnDefinition = "LONGVARCHAR")
     public String smallThumbnail;
     @JsonProperty("thumbnail")
+    @Column(columnDefinition = "LONGVARCHAR")
     public String thumbnail;
+    @JsonProperty("medium")
+    @Column(columnDefinition = "LONGVARCHAR")
+    public String medium;
 
 }
