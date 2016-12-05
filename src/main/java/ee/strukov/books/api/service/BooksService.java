@@ -12,4 +12,6 @@ import java.util.List;
 public interface BooksService {
     OwnedBook save(User user, Book book);
     List<OwnedBook> findByUser(User user);
+    void delete(OwnedBook book);
+    boolean existsByBookAndUserId(String book_id, Long user_id);
 }

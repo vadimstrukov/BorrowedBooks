@@ -38,4 +38,15 @@ public class BookServiceImpl implements BooksService {
     public List<OwnedBook> findByUser(User user) {
         return bookRepository.findByUser(user);
     }
+
+    @Override
+    public void delete(OwnedBook book) {
+        bookRepository.delete(book);
+    }
+
+    @Override
+    public boolean existsByBookAndUserId(String book_id, Long user_id) {
+        return bookRepository.existsByBookAndUserId(book_id, user_id);
+    }
+
 }
