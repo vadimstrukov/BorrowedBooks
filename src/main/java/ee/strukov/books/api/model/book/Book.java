@@ -21,10 +21,13 @@ import lombok.Data;
 @Table(name = "BOOK")
 public class Book implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
+    private Long book_id;
     @JsonProperty("kind")
     public String kind;
     @JsonProperty("id")
-    @Id
     public String id;
     @JsonProperty("etag")
     public String etag;
