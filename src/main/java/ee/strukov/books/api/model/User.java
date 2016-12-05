@@ -23,11 +23,13 @@ public class User implements Serializable {
     @Getter @Setter
     private Long id;
     @Getter @Setter
+    @Column(nullable = false)
     private String fullname;
     @Getter @Setter
+    @Column(unique = true, nullable = false)
     private String email;
     @Getter @Setter
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String pass;
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
