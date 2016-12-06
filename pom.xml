@@ -12,6 +12,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.2.RELEASE</version>
     </parent>
+    <packaging>war</packaging>
     <dependencies>
         <!--SPRING BOOT-->
         <dependency>
@@ -55,11 +56,11 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>3.5.3</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.liquibase</groupId>-->
+            <!--<artifactId>liquibase-core</artifactId>-->
+            <!--<version>3.5.3</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -85,27 +86,33 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.5.3</version>
+            <!--<plugin>-->
+                <!--<groupId>org.liquibase</groupId>-->
+                <!--<artifactId>liquibase-maven-plugin</artifactId>-->
+                <!--<version>3.5.3</version>-->
 
-                <configuration>
-                    <changeLogFile>src/main/resources/db/changelog.xml</changeLogFile>
-                    <driver>org.h2.Driver</driver>
-                    <url>jdbc:h2:~/dbBooks</url>
-                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                </configuration>
-            </plugin>
+                <!--<configuration>-->
+                    <!--<changeLogFile>src/main/resources/db/changelog.xml</changeLogFile>-->
+                    <!--<driver>org.h2.Driver</driver>-->
+                    <!--<url>jdbc:h2:~/dbBooks</url>-->
+                    <!--<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <start-class>ee.strukov.books.api.BooksApplication</start-class>
+    </properties>
+
 
 </project>
