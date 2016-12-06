@@ -29,8 +29,8 @@ public class BookController {
     BooksService booksService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<OwnedBook> save(@RequestBody Book book, @AuthenticationPrincipal User user) {
-        return new ResponseEntity<>(booksService.save(user, book), HttpStatus.OK);
+    public ResponseEntity<OwnedBook> save(@RequestBody OwnedBook book) {
+        return new ResponseEntity<>(booksService.save(book), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)

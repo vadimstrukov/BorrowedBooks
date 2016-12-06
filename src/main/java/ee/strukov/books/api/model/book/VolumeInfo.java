@@ -28,43 +28,43 @@ public class VolumeInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    public Long id;
+    private Long id;
     @JsonProperty("title")
-    public String title;
+    private String title;
     @JsonProperty("authors")
-    public String [] authors =  new String[10];
+    private String [] authors =  new String[10];
     @JsonProperty("publisher")
-    public String publisher;
+    private String publisher;
     @JsonProperty("publishedDate")
-    public String publishedDate;
+    private String publishedDate;
     @JsonProperty("description")
     @Column(columnDefinition = "LONGVARCHAR")
-    public String description;
+    private String description;
     @JsonProperty("pageCount")
-    public Integer pageCount;
+    private Integer pageCount;
     @JsonProperty("printType")
-    public String printType;
+    private String printType;
     @JsonProperty("categories")
-    public String [] categories = new String[20];
+    private String [] categories = new String[20];
     @JsonProperty("averageRating")
-    public Integer averageRating;
+    private Integer averageRating;
     @JsonProperty("ratingsCount")
-    public Integer ratingsCount;
+    private Integer ratingsCount;
     @JsonProperty("maturityRating")
-    public String maturityRating;
+    private String maturityRating;
     @JsonProperty("allowAnonLogging")
-    public Boolean allowAnonLogging;
+    private Boolean allowAnonLogging;
     @JsonProperty("contentVersion")
-    public String contentVersion;
+    private String contentVersion;
     @JsonProperty("imageLinks")
     @OneToOne(cascade=CascadeType.ALL)
-    public ImageLinks imageLinks;
+    private ImageLinks imageLinks;
     @JsonProperty("language")
-    public String language;
+    private String language;
     @JsonProperty("previewLink")
-    public String previewLink;
+    private String previewLink;
     @JsonProperty("infoLink")
-    public String infoLink;
+    private String infoLink;
     @JsonProperty("canonicalVolumeLink")
-    public String canonicalVolumeLink;
+    private String canonicalVolumeLink;
 }

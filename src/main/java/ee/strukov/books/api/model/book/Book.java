@@ -2,7 +2,9 @@
 package ee.strukov.books.api.model.book;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import javax.persistence.*;
@@ -14,26 +16,30 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 
 @Entity
 @Data
 @Table(name = "BOOK")
+@EqualsAndHashCode(of="id")
+@ToString(exclude="ownedBooks")
 public class Book implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
-    private Long book_id;
     @JsonProperty("kind")
-    public String kind;
+    private String kind;
+    @Id
     @JsonProperty("id")
-    public String id;
+    private String id;
     @JsonProperty("etag")
-    public String etag;
+    private String etag;
     @JsonProperty("selfLink")
-    public String selfLink;
+    private String selfLink;
     @JsonProperty("volumeInfo")
     @OneToOne(cascade= CascadeType.ALL)
-    public VolumeInfo volumeInfo;
+    private VolumeInfo volumeInfo;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "book")
+    private List<OwnedBook> ownedBooks = new ArrayList<>();
 }

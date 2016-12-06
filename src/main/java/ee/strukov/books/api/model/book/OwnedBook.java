@@ -5,6 +5,8 @@ import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.model.book.Book;
 import ee.strukov.books.api.model.enums.ReadStatus;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +18,7 @@ import java.util.Date;
 @Entity
 @Table(name = "OWNEDBOOK")
 @Data
+@EqualsAndHashCode(of="id")
 public class OwnedBook implements Serializable {
 
     @Id
@@ -25,10 +28,11 @@ public class OwnedBook implements Serializable {
     @Enumerated(EnumType.STRING)
     private ReadStatus readStatus;
     private Date date_added;
-    @OneToOne(cascade=CascadeType.MERGE)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-    @OneToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "book_id")
     private Book book;
 
 }

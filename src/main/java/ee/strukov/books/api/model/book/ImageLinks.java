@@ -24,15 +24,15 @@ public class ImageLinks implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    public Long id;
+    private Long id;
     @JsonProperty("smallThumbnail")
     @Column(columnDefinition = "LONGVARCHAR")
-    public String smallThumbnail;
+    private String smallThumbnail;
     @JsonProperty("thumbnail")
     @Column(columnDefinition = "LONGVARCHAR")
-    public String thumbnail;
+    private String thumbnail;
     @JsonProperty("medium")
     @Column(columnDefinition = "LONGVARCHAR")
-    public String medium;
+    private String medium;
 
 }

@@ -1,14 +1,14 @@
 package ee.strukov.books.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import ee.strukov.books.api.model.book.OwnedBook;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,6 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 @EqualsAndHashCode(of = "id")
+@ToString(exclude="ownedBooks")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,10 @@ public class User implements Serializable {
     @JoinTable(name = "userrole", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
     @Getter @Setter
     private Set<Role> roles = new HashSet<>();
+    @Getter @Setter
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<OwnedBook> ownedBooks = new ArrayList<>();
 
     public User(){}
 
