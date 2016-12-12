@@ -34,5 +34,6 @@ public class OwnedBook implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "book_id")
     private Book book;
+    private boolean isBorrowed;
 
 }
