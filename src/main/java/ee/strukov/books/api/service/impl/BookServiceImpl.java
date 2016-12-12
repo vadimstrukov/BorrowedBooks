@@ -2,8 +2,10 @@ package ee.strukov.books.api.service.impl;
 
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.model.book.Book;
+import ee.strukov.books.api.model.book.BorrowedBook;
 import ee.strukov.books.api.model.book.OwnedBook;
 import ee.strukov.books.api.repository.BookRepository;
+import ee.strukov.books.api.repository.BorrowedBookRepository;
 import ee.strukov.books.api.repository.OwnedBookRepository;
 import ee.strukov.books.api.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,13 @@ public class BookServiceImpl implements BooksService {
     private OwnedBookRepository ownedBookRepository;
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private BorrowedBookRepository borrowedBookRepository;
+
+    @Override
+    public BorrowedBook save(BorrowedBook borrowedBook) {
+        return borrowedBookRepository.save(borrowedBook);
+    }
 
     @Override
     public OwnedBook save(OwnedBook ownedBook) {
@@ -33,13 +42,30 @@ public class BookServiceImpl implements BooksService {
     }
 
     @Override
-    public List<OwnedBook> findByUser(User user) {
+    public OwnedBook update(OwnedBook ownedBook) {
+        OwnedBook book = ownedBookRepository.findOne(ownedBook.getId());
+        book.setReadStatus(ownedBook.getReadStatus());
+        return ownedBookRepository.save(book);
+    }
+
+    @Override
+    public List<OwnedBook> findOwnedBooks(User user) {
         return ownedBookRepository.findByUser(user);
+    }
+
+    @Override
+    public List<BorrowedBook> findBorrowedBooks(User user) {
+        return borrowedBookRepository.findByUser(user);
     }
 
     @Override
     public void delete(OwnedBook book) {
         ownedBookRepository.delete(book);
+    }
+
+    @Override
+    public void delete(BorrowedBook borrowedBook) {
+        borrowedBookRepository.delete(borrowedBook);
     }
 
     @Override
