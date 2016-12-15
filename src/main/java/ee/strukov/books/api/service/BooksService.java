@@ -16,7 +16,7 @@ public interface BooksService {
     OwnedBook update(OwnedBook ownedBook);
     List<OwnedBook> findOwnedBooks(User user);
     List<BorrowedBook> findBorrowedBooks(User user);
-    void delete(OwnedBook book);
-    void delete(BorrowedBook borrowedBook);
+    void deleteOwned(Long ownedBookId);
+    void deleteBorrowed(Long borrowedBookId);
     boolean existsByBookAndUserId(String book_id, Long user_id);
 }

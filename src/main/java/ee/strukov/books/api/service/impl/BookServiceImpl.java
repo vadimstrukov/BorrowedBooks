@@ -59,14 +59,15 @@ public class BookServiceImpl implements BooksService {
     }
 
     @Override
-    public void delete(OwnedBook book) {
-        ownedBookRepository.delete(book);
+    public void deleteOwned(Long ownedBookId) {
+        ownedBookRepository.delete(ownedBookId);
     }
 
     @Override
-    public void delete(BorrowedBook borrowedBook) {
-        borrowedBookRepository.delete(borrowedBook);
+    public void deleteBorrowed(Long borrowedBookId) {
+        borrowedBookRepository.delete(borrowedBookId);
     }
+
 
     @Override
     public boolean existsByBookAndUserId(String book_id, Long user_id) {

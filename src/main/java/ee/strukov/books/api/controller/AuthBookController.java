@@ -36,8 +36,8 @@ public class AuthBookController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/borrowed")
-    public ResponseEntity<BorrowedBook> delete(@RequestBody  BorrowedBook book) {
-        booksService.delete(book);
+    public ResponseEntity<BorrowedBook> deleteBorrowed(@RequestParam(value = "id")Long id) {
+        booksService.deleteBorrowed(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -52,8 +52,8 @@ public class AuthBookController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/owned")
-    public ResponseEntity<OwnedBook> delete(@RequestBody OwnedBook book) {
-        booksService.delete(book);
+    public ResponseEntity<OwnedBook> deleteOwned(@RequestParam(value = "id")Long id) {
+        booksService.deleteOwned(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -23,7 +23,6 @@ public class OwnedBook implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
     @Enumerated(EnumType.STRING)
     private ReadStatus readStatus;
