@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by strukov on 8.12.16.
  */
 @RestController
-@RequestMapping(value = "api/v1")
 public class AuthlessController {
 
     @Autowired
