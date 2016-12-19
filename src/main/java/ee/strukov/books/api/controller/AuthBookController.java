@@ -18,6 +18,7 @@ import java.util.List;
  * Created by strukov on 28.11.16.
  */
 @RestController
+@RequestMapping(value = "/v1")
 public class AuthBookController {
 
     @Autowired

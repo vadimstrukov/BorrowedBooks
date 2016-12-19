@@ -48,7 +48,7 @@ public class OAuth2ServerConfiguration {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/api/v1/user", "/api/v1/books").authenticated();
+                    .antMatchers("/v1").authenticated();
         }
 
     }
