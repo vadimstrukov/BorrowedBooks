@@ -23,7 +23,6 @@ public class OwnedBook implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
     @Enumerated(EnumType.STRING)
     private ReadStatus readStatus;
@@ -34,5 +33,6 @@ public class OwnedBook implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "book_id")
     private Book book;
+    private boolean isBorrowed;
 
 }
