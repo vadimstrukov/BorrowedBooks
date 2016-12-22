@@ -1,4 +1,5 @@
 # borrowed-books-api 
+RESTful API with Spring Boot and OAuth2 protocol for [Angular2 web application](https://github.com/vadimstrukov/borrowed-books-app)
 
 ## Usage
 
