@@ -42,8 +42,8 @@ public class AuthBookController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/owned")
-    public ResponseEntity<OwnedBook> save(@RequestBody OwnedBook book) {
-        return new ResponseEntity<>(booksService.save(book), HttpStatus.OK);
+    public ResponseEntity<OwnedBook> save(@RequestBody OwnedBook book, @AuthenticationPrincipal User user) {
+        return new ResponseEntity<>(booksService.save(book, user), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/owned")

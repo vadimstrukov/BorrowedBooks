@@ -34,10 +34,11 @@ public class BookServiceImpl implements BooksService {
     }
 
     @Override
-    public OwnedBook save(OwnedBook ownedBook) {
+    public OwnedBook save(OwnedBook ownedBook, User user) {
         Book book = bookRepository.findOne(ownedBook.getBook().getId());
         if (book != null)
             ownedBook.setBook(book);
+        ownedBook.setUser(user);
         return ownedBookRepository.save(ownedBook);
     }
 
