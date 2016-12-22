@@ -29,6 +29,7 @@ public class OwnedBook implements Serializable {
     private Date date_added;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "book_id")
