@@ -75,10 +75,11 @@ Host: localhost:8080
 Authorization: Bearer db9629be-5c8c-41af-8f7b-626e304c5c92
 ```
 ###### And the following response:
+
 `Successfully logged out`
 ---
 
-##### Books
+### Books
 * Add book to your library. API uses Google Books API to save original book to database once:
 ```HTTP
 POST: /api/v1/books/owned
