@@ -46,6 +46,7 @@ public class BookServiceImpl implements BooksService {
     public OwnedBook update(OwnedBook ownedBook) {
         OwnedBook book = ownedBookRepository.findOne(ownedBook.getId());
         book.setReadStatus(ownedBook.getReadStatus());
+        book.setBorrowed(ownedBook.getBorrowed());
         return ownedBookRepository.save(book);
     }
 
