@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface BooksService {
     BorrowedBook save(BorrowedBook borrowedBook);
-    OwnedBook save(OwnedBook ownedBook);
+    OwnedBook save(OwnedBook ownedBook, User user);
     OwnedBook update(OwnedBook ownedBook);
     List<OwnedBook> findOwnedBooks(User user);
     List<BorrowedBook> findBorrowedBooks(User user);

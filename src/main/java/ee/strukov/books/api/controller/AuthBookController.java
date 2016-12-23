@@ -18,7 +18,7 @@ import java.util.List;
  * Created by strukov on 28.11.16.
  */
 @RestController
-@RequestMapping(value = "/v1")
+@RequestMapping(value = "/api/v1/books")
 public class AuthBookController {
 
     @Autowired
@@ -42,8 +42,8 @@ public class AuthBookController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/owned")
-    public ResponseEntity<OwnedBook> save(@RequestBody OwnedBook book) {
-        return new ResponseEntity<>(booksService.save(book), HttpStatus.OK);
+    public ResponseEntity<OwnedBook> save(@RequestBody OwnedBook book, @AuthenticationPrincipal User user) {
+        return new ResponseEntity<>(booksService.save(book, user), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/owned")

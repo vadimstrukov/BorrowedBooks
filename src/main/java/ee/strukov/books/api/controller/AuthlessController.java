@@ -19,7 +19,7 @@ public class AuthlessController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/v1/register", method = RequestMethod.POST)
     public ResponseEntity<User> register(@RequestBody User user) {
         return new ResponseEntity<>(userService.register(user), HttpStatus.OK);
     }
