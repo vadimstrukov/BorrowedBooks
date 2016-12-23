@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by strukov on 28.11.16.
@@ -52,7 +53,10 @@ public class BookServiceImpl implements BooksService {
 
     @Override
     public List<OwnedBook> findOwnedBooks(User user) {
-        return ownedBookRepository.findByUser(user);
+        return ownedBookRepository.findByUser(user)
+                .stream()
+                .filter(book->book.getBorrowed().equals(false))
+                .collect(Collectors.toList());
     }
 
     @Override
