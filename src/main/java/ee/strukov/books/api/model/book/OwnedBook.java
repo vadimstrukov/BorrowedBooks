@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.model.book.Book;
 import ee.strukov.books.api.model.enums.ReadStatus;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,6 +32,6 @@ public class OwnedBook implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "book_id")
     private Book book;
-    private boolean isBorrowed;
+    private Boolean borrowed;
 
 }
