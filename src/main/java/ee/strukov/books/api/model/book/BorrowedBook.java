@@ -18,7 +18,6 @@ import java.util.Date;
 public class BorrowedBook implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
     @OneToOne(cascade = CascadeType.MERGE)
     private OwnedBook ownedBook;
