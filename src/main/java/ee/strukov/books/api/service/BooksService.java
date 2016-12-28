@@ -13,7 +13,8 @@ import java.util.List;
 public interface BooksService {
     BorrowedBook save(BorrowedBook borrowedBook);
     OwnedBook save(OwnedBook ownedBook, User user);
-    OwnedBook update(OwnedBook ownedBook);
+    OwnedBook updateOwned(OwnedBook ownedBook);
+    BorrowedBook updateBorrowed(BorrowedBook borrowedBook);
     List<OwnedBook> findOwnedBooks(User user);
     List<BorrowedBook> findBorrowedBooks(User user);
     void deleteOwned(Long ownedBookId);
