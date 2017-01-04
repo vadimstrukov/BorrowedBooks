@@ -1,7 +1,7 @@
 package ee.strukov.books.api.service;
 
 import ee.strukov.books.api.model.User;
-import ee.strukov.books.api.model.book.Book;
+import ee.strukov.books.api.model.UserLibrary;
 import ee.strukov.books.api.model.book.BorrowedBook;
 import ee.strukov.books.api.model.book.OwnedBook;
 
@@ -20,6 +20,5 @@ public interface BooksService {
     void deleteOwned(Long ownedBookId);
     void deleteBorrowed(Long borrowedBookId);
     boolean existsByBookAndUserId(String book_id, Long user_id);
-    Long ownedLength(User user);
-    Long borrowedLength(User user);
+    UserLibrary userLibraryLength(User user);
 }
