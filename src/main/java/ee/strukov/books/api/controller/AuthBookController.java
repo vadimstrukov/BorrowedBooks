@@ -25,6 +25,16 @@ public class AuthBookController {
     BooksService booksService;
 
 
+    @RequestMapping(method = RequestMethod.GET, path = "/borrowed/count")
+    public ResponseEntity<Long> getBorrowedLength(@AuthenticationPrincipal User user){
+        return new ResponseEntity<>(booksService.borrowedLength(user), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/owned/count")
+    public ResponseEntity<Long> getOwnedLength(@AuthenticationPrincipal User user){
+        return new ResponseEntity<>(booksService.ownedLength(user), HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.POST, path = "/borrowed")
     public ResponseEntity<BorrowedBook> save(@RequestBody BorrowedBook borrowedBook){
         return new ResponseEntity<>(booksService.save(borrowedBook), HttpStatus.OK);

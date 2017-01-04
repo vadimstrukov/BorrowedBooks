@@ -88,4 +88,14 @@ public class BookServiceImpl implements BooksService {
         return ownedBookRepository.existsByBookAndUserId(book_id, user_id);
     }
 
+    @Override
+    public Long ownedLength(User user) {
+       return ownedBookRepository.countByUserAndBorrowed(user, false);
+    }
+
+    @Override
+    public Long borrowedLength(User user) {
+        return borrowedBookRepository.countByUser(user);
+    }
+
 }

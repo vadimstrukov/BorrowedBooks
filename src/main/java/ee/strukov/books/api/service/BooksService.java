@@ -20,4 +20,6 @@ public interface BooksService {
     void deleteOwned(Long ownedBookId);
     void deleteBorrowed(Long borrowedBookId);
     boolean existsByBookAndUserId(String book_id, Long user_id);
+    Long ownedLength(User user);
+    Long borrowedLength(User user);
 }
