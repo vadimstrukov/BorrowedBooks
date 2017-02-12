@@ -2,6 +2,7 @@ package ee.strukov.books.api.controller;
 
 import ee.strukov.books.api.model.OwnedBookStatus;
 import ee.strukov.books.api.model.User;
+import ee.strukov.books.api.model.UserLibrary;
 import ee.strukov.books.api.model.book.BorrowedBook;
 import ee.strukov.books.api.model.book.OwnedBook;
 import ee.strukov.books.api.model.enums.BookStatus;
@@ -24,6 +25,10 @@ public class AuthBookController {
     @Autowired
     BooksService booksService;
 
+    @RequestMapping(method = RequestMethod.GET, path = "/count")
+    public ResponseEntity<UserLibrary> getLibraryLength(@AuthenticationPrincipal User user){
+        return new ResponseEntity<>(booksService.userLibraryLength(user), HttpStatus.OK);
+    }
 
     @RequestMapping(method = RequestMethod.POST, path = "/borrowed")
     public ResponseEntity<BorrowedBook> save(@RequestBody BorrowedBook borrowedBook){

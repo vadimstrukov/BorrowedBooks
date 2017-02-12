@@ -16,6 +16,7 @@ import java.util.List;
 @Repository
 public interface OwnedBookRepository extends JpaRepository<OwnedBook, Long> {
     List<OwnedBook> findByUser(User user);
+    Long countByUserAndBorrowed(User user, boolean borrowed);
     @Query("SELECT CASE WHEN COUNT(o) > 0 THEN true ELSE false END " +
             "FROM OwnedBook o WHERE o.book.id = :book_id AND o.user.id = :user_id")
     boolean existsByBookAndUserId(@Param("book_id") String book_id, @Param("user_id") Long user_id);

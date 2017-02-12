@@ -1,6 +1,7 @@
 package ee.strukov.books.api.service.impl;
 
 import ee.strukov.books.api.model.User;
+import ee.strukov.books.api.model.UserLibrary;
 import ee.strukov.books.api.model.book.Book;
 import ee.strukov.books.api.model.book.BorrowedBook;
 import ee.strukov.books.api.model.book.OwnedBook;
@@ -86,6 +87,11 @@ public class BookServiceImpl implements BooksService {
     @Override
     public boolean existsByBookAndUserId(String book_id, Long user_id) {
         return ownedBookRepository.existsByBookAndUserId(book_id, user_id);
+    }
+
+    @Override
+    public UserLibrary userLibraryLength(User user){
+        return new UserLibrary(ownedBookRepository.countByUserAndBorrowed(user, false), borrowedBookRepository.countByUser(user));
     }
 
 }
