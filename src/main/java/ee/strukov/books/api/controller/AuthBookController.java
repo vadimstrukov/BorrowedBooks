@@ -1,6 +1,6 @@
 package ee.strukov.books.api.controller;
 
-import ee.strukov.books.api.BookApi;
+import ee.strukov.books.api.annotations.BookApi;
 import ee.strukov.books.api.model.OwnedBookStatus;
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.model.UserLibrary;
@@ -75,11 +75,8 @@ public class AuthBookController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/owned/check")
     public ResponseEntity<OwnedBookStatus> ownedBookExists(@RequestParam(value = "id") String book_id, @AuthenticationPrincipal User user){
-        OwnedBookStatus bookStatus;
-        if(booksService.existsByBookAndUserId(book_id, user.getId()))
-            bookStatus = new OwnedBookStatus(book_id, BookStatus.EXISTS);
-        else
-            bookStatus = new OwnedBookStatus(book_id, BookStatus.NULL);
+        OwnedBookStatus bookStatus = booksService.existsByBookAndUserId(book_id, user.getId()) ? new OwnedBookStatus(BookStatus.EXISTS) : new OwnedBookStatus(BookStatus.NULL);
+        bookStatus.setBook_id(book_id);
         return new ResponseEntity<>(bookStatus, HttpStatus.OK);
 
     }

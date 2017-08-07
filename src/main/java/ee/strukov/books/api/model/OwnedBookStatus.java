@@ -15,8 +15,7 @@ import java.io.Serializable;
 public class OwnedBookStatus implements Serializable {
     private String book_id;
     private BookStatus status;
-    public OwnedBookStatus(String book_id, BookStatus status){
-        this.book_id = book_id;
+    public OwnedBookStatus(BookStatus status){
         this.status = status;
     }
 }
