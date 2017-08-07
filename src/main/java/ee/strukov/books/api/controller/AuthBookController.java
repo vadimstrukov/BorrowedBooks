@@ -1,5 +1,6 @@
 package ee.strukov.books.api.controller;
 
+import ee.strukov.books.api.BookApi;
 import ee.strukov.books.api.model.OwnedBookStatus;
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.model.UserLibrary;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by strukov on 28.11.16.
  */
 @RestController
-@RequestMapping(value = "/api/v1/books")
+@BookApi(request = "books")
 public class AuthBookController {
 
     @Autowired

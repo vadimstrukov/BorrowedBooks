@@ -1,5 +1,6 @@
 package ee.strukov.books.api.controller;
 
+import ee.strukov.books.api.BookApi;
 import ee.strukov.books.api.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by strukov on 20.11.16.
  */
 @RestController
-@RequestMapping(value = "/api/v1/user")
+@BookApi(request = "user")
 public class AuthUserController {
 
 
