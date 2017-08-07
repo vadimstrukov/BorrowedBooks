@@ -1,6 +1,7 @@
 package ee.strukov.books.api.controller;
 
-import ee.strukov.books.api.BookApi;
+import ee.strukov.books.api.annotations.BookApi;
+import ee.strukov.books.api.annotations.BookApiRequest;
 import ee.strukov.books.api.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,15 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.common.exceptions.InvalidClientException;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * Created by strukov on 20.11.16.
  */
-@RestController
 @BookApi(request = "user")
 public class AuthUserController {
 
@@ -24,15 +24,15 @@ public class AuthUserController {
     @Autowired
     private DefaultTokenServices defaultTokenServices;
 
-    @RequestMapping(value = "/me", method = RequestMethod.GET)
-    public ResponseEntity<User> getLoggedInUser(@AuthenticationPrincipal User user) {
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @BookApiRequest(path = "me", method = GET)
+    public User getLoggedInUser(@AuthenticationPrincipal User user) {
+        return user;
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ResponseEntity<String> logout(HttpServletRequest request) throws InvalidClientException {
+    @BookApiRequest(path = "logout", method = GET)
+    public String logout(HttpServletRequest request) throws InvalidClientException {
         defaultTokenServices.revokeToken(request.getHeader("Authorization").replace("Bearer", "").trim());
-        return new ResponseEntity<>("Successfully logged out", HttpStatus.OK);
+        return "Successfully logged out";
     }
 
 }
