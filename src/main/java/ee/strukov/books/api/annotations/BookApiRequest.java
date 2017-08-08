@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.lang.annotation.*;
 
-import static ee.strukov.books.api.BookApiConstants.BOOK_API_URL;
-
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @RequestMapping(
-        value = BOOK_API_URL,
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
 )
