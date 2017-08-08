@@ -1,6 +1,8 @@
 package ee.strukov.books.api.controller;
 
-import ee.strukov.books.api.annotations.BookApi;
+import ee.strukov.books.api.BookApiConstants.*;
+import ee.strukov.books.api.annotations.BookApiRequest;
+import ee.strukov.books.api.annotations.BookController;
 import ee.strukov.books.api.model.OwnedBookStatus;
 import ee.strukov.books.api.model.User;
 import ee.strukov.books.api.model.UserLibrary;
@@ -9,76 +11,72 @@ import ee.strukov.books.api.model.book.OwnedBook;
 import ee.strukov.books.api.model.enums.BookStatus;
 import ee.strukov.books.api.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 /**
  * Created by strukov on 28.11.16.
  */
-@RestController
-@BookApi(request = "books")
+@BookController(Api.BOOKS)
 public class AuthBookController {
 
     @Autowired
     BooksService booksService;
 
-    @RequestMapping(method = RequestMethod.GET, path = "/count")
-    public ResponseEntity<UserLibrary> getLibraryLength(@AuthenticationPrincipal User user){
-        return new ResponseEntity<>(booksService.userLibraryLength(user), HttpStatus.OK);
+    @BookApiRequest(method = GET, path = "/count")
+    public UserLibrary getLibraryLength(@AuthenticationPrincipal User user){
+        return booksService.userLibraryLength(user);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/borrowed")
-    public ResponseEntity<BorrowedBook> save(@RequestBody BorrowedBook borrowedBook){
-        return new ResponseEntity<>(booksService.save(borrowedBook), HttpStatus.OK);
+    @BookApiRequest(method = POST, path = "/borrowed")
+    public BorrowedBook save(@RequestBody BorrowedBook borrowedBook){
+        return booksService.save(borrowedBook);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/borrowed")
-    public ResponseEntity<List<BorrowedBook>> getBorrowedBooks(@AuthenticationPrincipal User user){
-        return new ResponseEntity<>(booksService.findBorrowedBooks(user), HttpStatus.OK);
+    @BookApiRequest(method = GET, path = "/borrowed")
+    public List<BorrowedBook>getBorrowedBooks(@AuthenticationPrincipal User user){
+        return booksService.findBorrowedBooks(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, path = "/borrowed")
-    public ResponseEntity<BorrowedBook> updateBorrowed(@RequestBody BorrowedBook book){
-        return new ResponseEntity<>(booksService.updateBorrowed(book), HttpStatus.OK);
+    @BookApiRequest(method = PUT, path = "/borrowed")
+    public BorrowedBook updateBorrowed(@RequestBody BorrowedBook book){
+        return booksService.updateBorrowed(book);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/borrowed")
-    public ResponseEntity<BorrowedBook> deleteBorrowed(@RequestParam(value = "id")Long id) {
+    @BookApiRequest(method = DELETE, path = "/borrowed")
+    public void deleteBorrowed(@RequestParam(value = "id")Long id) {
         booksService.deleteBorrowed(id);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/owned")
-    public ResponseEntity<OwnedBook> save(@RequestBody OwnedBook book, @AuthenticationPrincipal User user) {
-        return new ResponseEntity<>(booksService.save(book, user), HttpStatus.OK);
+    @BookApiRequest(method = POST, path = "/owned")
+    public OwnedBook save(@RequestBody OwnedBook book, @AuthenticationPrincipal User user) {
+        return booksService.save(book, user);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/owned")
-    public ResponseEntity<List<OwnedBook>> getBooks(@AuthenticationPrincipal User user){
-        return new ResponseEntity<>(booksService.findOwnedBooks(user), HttpStatus.OK);
+    @BookApiRequest(method = GET, path = "/owned")
+    public List<OwnedBook> getBooks(@AuthenticationPrincipal User user){
+        return booksService.findOwnedBooks(user);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/owned")
-    public ResponseEntity<OwnedBook> deleteOwned(@RequestParam(value = "id")Long id) {
+    @BookApiRequest(method = DELETE, path = "/owned")
+    public void deleteOwned(@RequestParam(value = "id")Long id) {
         booksService.deleteOwned(id);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, path = "/owned")
-    public ResponseEntity<OwnedBook> update(@RequestBody OwnedBook book){
-        return new ResponseEntity<>(booksService.updateOwned(book), HttpStatus.OK);
+    @BookApiRequest(method = PUT, path = "/owned")
+    public OwnedBook update(@RequestBody OwnedBook book){
+        return booksService.updateOwned(book);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/owned/check")
-    public ResponseEntity<OwnedBookStatus> ownedBookExists(@RequestParam(value = "id") String book_id, @AuthenticationPrincipal User user){
+    @BookApiRequest(method = GET, path= "/owned/check")
+    public OwnedBookStatus ownedBookExists(@RequestParam(value = "id") String book_id, @AuthenticationPrincipal User user){
         OwnedBookStatus bookStatus = booksService.existsByBookAndUserId(book_id, user.getId()) ? new OwnedBookStatus(BookStatus.EXISTS) : new OwnedBookStatus(BookStatus.NULL);
         bookStatus.setBook_id(book_id);
-        return new ResponseEntity<>(bookStatus, HttpStatus.OK);
-
+        return bookStatus;
     }
 }
 
