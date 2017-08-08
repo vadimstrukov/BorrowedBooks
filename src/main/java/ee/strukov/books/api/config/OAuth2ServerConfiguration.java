@@ -1,5 +1,6 @@
 package ee.strukov.books.api.config;
 
+import ee.strukov.books.api.BookApiConstants.*;
 import ee.strukov.books.api.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -48,7 +49,7 @@ public class OAuth2ServerConfiguration {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/api/v1/register").permitAll()
+                    .antMatchers(Api.USER + "/register").permitAll()
                     .anyRequest().authenticated();
         }
 
