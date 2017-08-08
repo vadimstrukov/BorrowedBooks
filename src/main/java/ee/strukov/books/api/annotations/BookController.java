@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Documented
 @RequestMapping
 @RestController
-public @interface BookApi {
-    @AliasFor(annotation = RequestMapping.class, attribute = "value")
-    String[] value() default {};
+public @interface BookController {
+    @AliasFor(annotation = RequestMapping.class, attribute = "path")
+    String value() default "";
 }
